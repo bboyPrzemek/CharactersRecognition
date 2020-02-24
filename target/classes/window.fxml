@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WindowController">
+   <top>
+      <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="338.0" style="-fx-background-color: #5f7dc7;" BorderPane.alignment="CENTER">
+         <children>
+            <FontAwesomeIcon fx:id="minimizeBtn" fill="WHITE" glyphName="MINUS" size="1.2em">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <FontAwesomeIcon fx:id="closeBtn" fill="WHITE" glyphName="CLOSE" size="1.2em" text="">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </HBox>
+   </top>
+</BorderPane>
