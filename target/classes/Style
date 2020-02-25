@@ -1,0 +1,8 @@
+
+#borderPane{
+-fx-background-color:#c4c4c4;
+}
+
+#pane{
+-fx-background-color:white;
+}
