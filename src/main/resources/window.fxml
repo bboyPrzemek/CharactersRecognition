@@ -28,7 +28,7 @@
             </Pane>
             <HBox alignment="CENTER" prefHeight="73.0" prefWidth="386.0">
                <children>
-                  <Button mnemonicParsing="false" text="Sprawdź">
+                  <Button mnemonicParsing="false" fx:id="checkBtn" text="Sprawdź">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin></Button>
