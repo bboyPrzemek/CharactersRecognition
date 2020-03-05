@@ -75,22 +75,13 @@ private DateTimeFormatter formatter;
         }
     }
 
-    private void handleCheckButton(){
-        if (ImagesTransformation.isCanvasBlank(canvas)){
-            output.setText(Utils.IF_NO_CANVAS_DRAW_TEXT);
-        }else {
-            NeuralNetwork loadedMlPerceptron = NeuralNetwork.createFromFile(MultiLayerNeuralNetwork.TRAINED_FILE_NAME);
-            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(canvas.snapshot(null, null), null);
-            Point startPoint = ImagesTransformation.getStartPointCropImage(bufferedImage);
-            Point lastPoint = ImagesTransformation.getLastPointCropImage(bufferedImage);
-            int width = ImagesTransformation.getWidthCrop(lastPoint, startPoint);
-            int height = ImagesTransformation.getHeightCrop(lastPoint, startPoint);
-            bufferedImage = ImagesTransformation.cropImage(bufferedImage, startPoint.getX(), startPoint.getY(), width, height);
-            bufferedImage = ImagesTransformation.getBinarizedImage(SwingFXUtils.fromFXImage(ImagesTransformation.scaleImage(SwingFXUtils.toFXImage(bufferedImage, null), Utils.IMG_WIDTH, Utils.IMG_HEIGHT), null));
-            loadedMlPerceptron.setInput(ImagesTransformation.getPixelsValuesFromBinaryImage(bufferedImage));
-            loadedMlPerceptron.calculate();
-            output.setText(String.valueOf(getIndexOfLargest(loadedMlPerceptron.getOutput())));
+    private int getIndexOfLargest(double[] array) {
+        if (array == null || array.length == 0) return -1;
+        int largest = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > array[largest]) largest = i;
         }
+        return largest;
     }
 
     private void handleSaveButton(){
@@ -107,12 +98,21 @@ private DateTimeFormatter formatter;
         }
     }
 
-    private int getIndexOfLargest(double[] array) {
-        if (array == null || array.length == 0) return -1;
-        int largest = 0;
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] > array[largest]) largest = i;
+    private void handleCheckButton(){
+        if (ImagesTransformation.isCanvasBlank(canvas)){
+            output.setText(Utils.IF_NO_CANVAS_DRAW_TEXT);
+        }else {
+            NeuralNetwork loadedMlPerceptron = NeuralNetwork.createFromFile(MultiLayerNeuralNetwork.TRAINED_FILE_NAME);
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(canvas.snapshot(null, null), null);
+            Point startPoint = ImagesTransformation.getStartPointCropImage(bufferedImage);
+            Point lastPoint = ImagesTransformation.getLastPointCropImage(bufferedImage);
+            int width = ImagesTransformation.getWidthCrop(lastPoint, startPoint);
+            int height = ImagesTransformation.getHeightCrop(lastPoint, startPoint);
+            bufferedImage = ImagesTransformation.cropImage(bufferedImage, startPoint.getX(), startPoint.getY(), width, height);
+            bufferedImage = ImagesTransformation.getBinarizedImage(SwingFXUtils.fromFXImage(ImagesTransformation.scaleImage(SwingFXUtils.toFXImage(bufferedImage, null), Utils.IMG_WIDTH, Utils.IMG_HEIGHT), null));
+            loadedMlPerceptron.setInput(ImagesTransformation.getPixelsValuesFromBinaryImage(bufferedImage));
+            loadedMlPerceptron.calculate();
+            output.setText(String.valueOf(getIndexOfLargest(loadedMlPerceptron.getOutput())));
         }
-        return largest;
     }
 }
