@@ -21,6 +21,5 @@ public class CharacterRecognition extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 }
